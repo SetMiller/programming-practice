@@ -8,7 +8,7 @@
     // Получаем интересующие нас элементы 
     const items = document.querySelectorAll('.items .items__item')
     const divPrice = document.querySelector('.value')
-    // Для каждой карточки товара при килке вызываем функцию toggler()
+    // Для каждой карточки товара при клике вызываем функцию toggler()
     for (let itemElement of items){
       itemElement.onclick = toggler
     }

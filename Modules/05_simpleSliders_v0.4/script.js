@@ -9,9 +9,6 @@ import Slider from './script_classes.js'
   function consoleClear(){
     console.clear()
   },
-  function importClasses(){
-
-  },
   function slider1(){
     new Slider({
       btnNext: '.gallery-1 .buttons .next',
