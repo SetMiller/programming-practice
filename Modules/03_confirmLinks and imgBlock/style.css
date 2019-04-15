@@ -1,0 +1,11 @@
+body {
+  margin: 20px;
+}
+a {
+  padding: 10px;
+}
+
+.gallery img {
+  margin: 20px;
+  width: 300px;
+}

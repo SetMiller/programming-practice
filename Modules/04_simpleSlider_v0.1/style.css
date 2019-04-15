@@ -1,0 +1,30 @@
+body {
+  margin: 20px;
+}
+
+#gallery {
+  width: 340px;
+  margin: 0 auto;
+  text-align: center;
+  box-sizing: border-box
+}
+
+#gallery .slider {
+  position: relative;
+  height: 250px;
+  padding: 10px;
+}
+
+#gallery .slider img {
+  width: 100%;
+  margin: 20px;
+  width: 300px;
+  left: 0px;
+  position: absolute;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+#gallery .slider img.show {
+  opacity: 1;
+}
