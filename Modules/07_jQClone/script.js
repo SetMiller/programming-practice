@@ -43,7 +43,8 @@
       //     this.classList.remove('focus')
       //   }
       // }
-
+  },
+  function jQCloneOne(){
     // 1️⃣
       // for(let input of inputs){
       //   input.addEventListener('blur', function(){
@@ -57,18 +58,24 @@
       //       this.classList.remove('err')
       //   }
       // )
-
+  },
+  function jQCloneTwo(){
     // 3️⃣
       // let jqInputs = new jQClone(inputs)
       // jqInputs.on('click', removeErr)
       // jqInputs.on('focus', addFocus)
       // jqInputs.on('blur', removeFocus)
 
-    // 4️⃣
+    // 4️⃣  Выбираем необходимые элементы и вешаем на них обработчики
       let jqInputs = jQ('.check')
-      jqInputs.on('click', removeErr)
-      jqInputs.on('focus', addFocus)
-      jqInputs.on('blur', removeFocus)
+      jqInputs
+              .on('click', removeErr)
+              .on('focus', addFocus)
+              .on('blur', removeFocus)
+
+      jqInputs
+              .addClass('some')
+              .removeClass('some')
       
     // Функции обработчики событий у инпутов
       function removeErr(){
@@ -80,5 +87,13 @@
       function removeFocus(){
         this.classList.remove('focus')
       }
+  },
+  function jQCloneThree(){ 
+    // 5️⃣ Получаем NodeList elements, добавляем в них текст и вешаем обработчик 
+      jQ('.items .item')
+                        .html('123')
+                        .on('click', function(){
+                          this.style.color = 'red'
+                        })
   }
 )

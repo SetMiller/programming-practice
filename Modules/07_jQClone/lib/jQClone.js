@@ -1,4 +1,5 @@
 // Основная функция для экспорта
+  // 4️⃣
   export default function jQ(selector){
     let elements = document.querySelectorAll(selector)
     return new jQClone(elements)
@@ -22,6 +23,28 @@
         for(let element of this.elements){
           element.addEventListener(eventName, f)
         }
+        // возвращаем контекст для вызова следующей функции и построения цепочек вызовов
+        return this
+      }
+      addClass(name){
+        for(let element of this.elements){
+          element.classList.add(name)
+        }
+        return this
+      }
+      removeClass(name){
+        for(let element of this.elements){
+          element.classList.remove(name)
+        }
+        return this
+      }
+      
+    // 5️⃣
+      html(html){
+        for(let element of this.elements){
+          element.innerHTML = html
+        }
+        return this
       }
   }
 
