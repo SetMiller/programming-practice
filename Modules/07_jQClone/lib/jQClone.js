@@ -1,0 +1,29 @@
+// Основная функция для экспорта
+  export default function jQ(selector){
+    let elements = document.querySelectorAll(selector)
+    return new jQClone(elements)
+  }
+
+// Второстепенная функция(класс)
+  class jQClone {
+    constructor(elements) {
+      this.elements = elements
+    }
+
+    // 2️⃣
+      // click(f){
+      //   for(let element of this.elements){
+      //     element.addEventListener('click', f)
+      //   }
+      // }
+
+    // 3️⃣
+      on(eventName, f){
+        for(let element of this.elements){
+          element.addEventListener(eventName, f)
+        }
+      }
+  }
+
+// Вариант экспорта всех необходимых функций
+  // export {jQ, jQClone}
