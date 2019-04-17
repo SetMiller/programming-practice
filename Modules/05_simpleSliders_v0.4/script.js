@@ -23,7 +23,7 @@ import Slider from './script_classes.js'
       btnNext: '.gallery-2 .buttons .next',
       btnPrev: '.gallery-2 .buttons .prev',
       images: '.gallery-2 .slider img',
-      auto: false,
+      auto: true,
       mouseBlock: false,
     })
   },
@@ -32,7 +32,8 @@ import Slider from './script_classes.js'
       btnNext: '.gallery-3 .buttons .next',
       btnPrev: '.gallery-3 .buttons .prev',
       images: '.gallery-3 .slider img',
-      auto: true,
+      auto: false,
+      autoInterval: 2000,
       mouseBlock: true,
     })
   },

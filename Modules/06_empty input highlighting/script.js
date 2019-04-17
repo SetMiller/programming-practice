@@ -23,7 +23,8 @@
       // если есть ошибка, то прерываем выполнение эвента
       if(error){
           // прерываем выполнение отправки формы если есть ошибка
-          e.preventDefault();
+          // e.preventDefault();
+          e.stopPropagation()
       }
     }
     for(let input of inputs){

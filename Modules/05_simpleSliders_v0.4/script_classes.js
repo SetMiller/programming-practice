@@ -5,9 +5,9 @@ export default class Slider {
     this.images = document.querySelectorAll(obj.images)
     this.counter = 0
 
-    this.btnNext ? this.btnNext.onclick = () => this.upChangeClass() : ''
-    this.btnNext ? this.btnPrev.onclick = () => this.downChangeClass() : ''
-    obj.auto ? setInterval(() => this.upChangeClass(), 1000) : false
+    // Проверяемм наличие кнопок, если их нет, то принудительно запускаем карусель
+    this.btnNext && this.btnPrev ? this.autoCheck(obj.auto) : this.autoChange(obj.autoInterval)
+
     obj.mouseBlock ? this.mouseBlock() : ''
   }
   upChangeClass(){
@@ -25,5 +25,13 @@ export default class Slider {
       this.img.onmousedown = () => {return false}
       this.img.oncontextmenu = () => {return false}
     }
+  }
+  autoChange(defSliderInterval = 1000){
+    setInterval(() => this.upChangeClass(), defSliderInterval)
+  }
+  autoCheck(defAutoParam = true){
+    this.btnNext.onclick = () => this.upChangeClass()
+    this.btnPrev.onclick = () => this.downChangeClass()
+    defAutoParam ? this.autoChange() : ''
   }
 }
