@@ -1,4 +1,5 @@
-# Создание упрощенного аналога jQuery на примере [empty input highlighting](https://github.com/SetMiller/programming-practice/tree/master/Modules/06_empty%20input%20highlighting)
+# Создание упрощенного аналога jQuery
+За основу взят модуль [06_empty input highlighting](https://github.com/SetMiller/programming-practice/tree/master/Modules/06_empty%20input%20highlighting)
 
 Цели и задачи:
 -
@@ -28,7 +29,7 @@
 -
   ```javascript
   jQ('.items .item')
-                    .html('123')
+                    .html('Some text')
                     .on('click', function(){
                       this.style.color = 'red'
                     })
