@@ -8,8 +8,8 @@
 - Понять принципы написания библиотек
 
 
-### Перечень содержимого репозитория:
-
+Перечень содержимого репозитория:
+-
 * [01_simple calc](https://github.com/SetMiller/some_small_modules/tree/master/Modules/01_simple%20calc)
 * [02_item data price sum calc](https://github.com/SetMiller/some_small_modules/tree/master/Modules/02_item%20data%20price%20sum%20calc)
 * [03_confirmLinks and imgBlock](https://github.com/SetMiller/some_small_modules/tree/master/Modules/03_confirmLinks%20and%20imgBlock)
