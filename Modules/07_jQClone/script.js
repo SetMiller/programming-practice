@@ -1,5 +1,5 @@
 // Импортируем основную функцию
-  import jQ from './lib/jQClone.js'
+  import JQ from './lib/jQClone.js'
   // import {jQ, jQClone} from './lib/jQClone.js'
   // import jQClone from './lib/jQClone.js'
 
@@ -67,7 +67,7 @@
       // jqInputs.on('blur', removeFocus)
 
     // 4️⃣  Выбираем необходимые элементы и вешаем на них обработчики
-      let jqInputs = jQ('.check')
+      let jqInputs = JQ('.check')
       jqInputs
               .on('click', removeErr)
               .on('focus', addFocus)
@@ -90,8 +90,8 @@
   },
   function jQCloneThree(){ 
     // 5️⃣ Получаем NodeList elements, добавляем в них текст и вешаем обработчик 
-      jQ('.items .item')
-                        .html('123')
+      JQ('.items .item')
+                        .html('some text')
                         .on('click', function(){
                           this.style.color = 'red'
                         })

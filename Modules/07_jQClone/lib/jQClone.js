@@ -2,11 +2,11 @@
   // 4️⃣
   export default function jQ(selector){
     let elements = document.querySelectorAll(selector)
-    return new jQClone(elements)
+    return new JQClone(elements)
   }
 
 // Второстепенная функция(класс)
-  class jQClone {
+  class JQClone {
     constructor(elements) {
       this.elements = elements
     }

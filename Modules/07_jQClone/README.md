@@ -9,7 +9,7 @@
 
 Интересные моменты:
 -  
-- функция `jQ()` , которая возвращает объект `jQClone`, содержащий `NodeList DOM` элементов выбранных по селектору  
+- функция `jQ()` , которая инициализирует и возвращает новый объект `jQClone`, и передает в него `NodeList DOM` элементов выбранных по селектору  
   ```javascript
   function jQ(selector){
     let elements = document.querySelectorAll(selector)
