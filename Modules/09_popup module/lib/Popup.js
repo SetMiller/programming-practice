@@ -2,24 +2,24 @@ export default class Popup {
   constructor(obj){
     
     // объект добавляемой разметки
-    const arrElemProp = [
-      {'.wrapper': '<div class="popup-overlay popup-sleep"></div>'},
-        {'.popup-overlay': '<div class="popup-overlay__title"> title </div>'},
-        {'.popup-overlay': '<div class="popup-overlay__text"> text </div>'},
-      {'.wrapper': '<div class="popup-underlay popup-sleep"></div>'},
-    ]
+      const arrElemProp = [
+        {'.wrapper': '<div class="popup-overlay popup-sleep"></div>'},
+          {'.popup-overlay': '<div class="popup-overlay__title"> title </div>'},
+          {'.popup-overlay': '<div class="popup-overlay__text"> text </div>'},
+        {'.wrapper': '<div class="popup-underlay popup-sleep"></div>'},
+      ]
 
     // построение разметки 🔥🔥🔥
-    this.createElem(arrElemProp)
+     this.createElem(arrElemProp)
 
     // передаем 2 нод листа с дивами для попапа
-    this.overlay = document.querySelector('.popup-overlay')
-    this.underlay = document.querySelector('.popup-underlay')
+      this.overlay = document.querySelector('.popup-overlay')
+      this.underlay = document.querySelector('.popup-underlay')
     // передаем нод лист с дивами для эвента
-    this.items = document.querySelectorAll(obj.items)
+      this.items = document.querySelectorAll(obj.items)
     // получаем доступ к дивам для отображения в них информации из выбранных карточек
-    this.title = document.querySelector('.popup-overlay__title')
-    this.text = document.querySelector('.popup-overlay__text')
+      this.title = document.querySelector('.popup-overlay__title')
+      this.text = document.querySelector('.popup-overlay__text')
   }
 
   // функция для добавления элемента в разметку
