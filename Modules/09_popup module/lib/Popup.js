@@ -1,8 +1,8 @@
 export default class Popup {
   constructor(obj){
-
+    
     // объект добавляемой разметки
-    const objElemProp = [
+    const arrElemProp = [
       {'.wrapper': '<div class="popup-overlay popup-sleep"></div>'},
         {'.popup-overlay': '<div class="popup-overlay__title"> title </div>'},
         {'.popup-overlay': '<div class="popup-overlay__text"> text </div>'},
@@ -10,7 +10,7 @@ export default class Popup {
     ]
 
     // построение разметки 🔥🔥🔥
-    this.createElem(objElemProp)
+    this.createElem(arrElemProp)
 
     // передаем 2 нод листа с дивами для попапа
     this.overlay = document.querySelector('.popup-overlay')
@@ -23,15 +23,15 @@ export default class Popup {
   }
 
   // функция для добавления элемента в разметку
-  addElemFunc(classAddElem, elem){
+  insertElem(classAddElem, elem){
     document.querySelector(classAddElem).insertAdjacentHTML('beforeend', elem);
   }
 
   // функция для построения разметки по данным из объекта разметки
-  createElem(obj){
-    for(let prop of obj){
+  createElem(arr){
+    for(let prop of arr){
     Object.keys(prop).map((value) => {
-      this.addElemFunc(value, prop[value])
+      this.insertElem(value, prop[value])
       })
     }
   }

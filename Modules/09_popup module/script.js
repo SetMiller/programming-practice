@@ -8,7 +8,6 @@ import Popup from './lib/Popup.js'
   function popupOn(){
   // Создание разметки с помощью конструктора
     let popup = new Popup({
-
                             items: '.items .items__item'
                           })
   // Добавляем функционал
