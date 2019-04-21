@@ -9,6 +9,9 @@ export default class Popup {
     // получаем доступ к дивам для отображения в них информации из выбранных карточек
     this.title = document.querySelector(obj.title)
     this.text = document.querySelector(obj.text)
+    // this.overlay.style.opacity = 1
+    // this.overlayOpacity = this.overlay.style.opacity
+    // console.log(this.overlayOpacity)
   }
 //TODO: найти способ передавать для эвента объект или массив методов, или "...f" для их вызова
   on(eventName, f){
@@ -21,16 +24,15 @@ export default class Popup {
 
   open(){
     // при нажатии на итем убираем скрывающий класс
-    console.log(this)
     this.overlay.classList.remove('popup-sleep')
     this.underlay.classList.remove('popup-sleep')
   }
 
-  close(){
-    // при нажатии на underlay возвращаем классы дивами для попапа для скрытия
+  fadeClose(animationTimer = 500, fps = 60){
     this.underlay.addEventListener('click', () => {
-      this.overlay.classList.add('popup-sleep')
-      this.underlay.classList.add('popup-sleep')
+      // либо можно получить NodeList элементов и вызвать функцию в цикле
+      this.fade(this.overlay, fps, animationTimer)
+      this.fade(this.underlay, fps, animationTimer)
     })
     return this
   }
@@ -44,5 +46,36 @@ export default class Popup {
       }
     }
     return this
+  }
+
+  // f -> fps (частота, с которой будет выполняться анимация)
+  // t -> time (время, которое будет выполняться анимация)
+  fade(elem, f, t){
+    // console.log([elem, f, t])
+    // частота кадров при работе анимации
+    let fps = f
+    //  время работы анимации
+    let time = t
+    // скорость работы 1 кадра анимации
+    let speed = 1000 / fps
+    // общее количество кадров анимации
+    let steps = time / speed
+    // начальное значение opacity
+    let op = 1
+    // промежуточное значение opacity
+    let d0 = op / steps
+    // функция таймер
+    let timer = setInterval(function(){
+        op -= d0
+        elem.style.opacity = op
+        steps--
+        if (steps <= 0) {
+          // функция прерывания таймера
+          clearInterval(timer)
+          elem.classList.add('popup-sleep')
+          elem.style.opacity = ''
+        }
+      }
+    , speed)
   }
 }

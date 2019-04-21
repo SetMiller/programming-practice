@@ -25,7 +25,7 @@ import Popup from './lib/Popup.js'
       popup
             .on('click', () => popup.open())
             .toggler()  
-            .close()  
+            .fadeClose(1000, 100)  
     
   // 2️⃣ Вариант упрощенный, без создания классов
     // const overlay = document.querySelector('.popup-overlay')
