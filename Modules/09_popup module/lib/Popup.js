@@ -1,18 +1,41 @@
 export default class Popup {
-  
   constructor(obj){
+
+    // объект добавляемой разметки
+    const objElemProp = [
+      {'.wrapper': '<div class="popup-overlay popup-sleep"></div>'},
+        {'.popup-overlay': '<div class="popup-overlay__title"> title </div>'},
+        {'.popup-overlay': '<div class="popup-overlay__text"> text </div>'},
+      {'.wrapper': '<div class="popup-underlay popup-sleep"></div>'},
+    ]
+
+    // построение разметки 🔥🔥🔥
+    this.createElem(objElemProp)
+
     // передаем 2 нод листа с дивами для попапа
-    this.overlay = document.querySelector(obj.overlay)
-    this.underlay = document.querySelector(obj.underlay)
+    this.overlay = document.querySelector('.popup-overlay')
+    this.underlay = document.querySelector('.popup-underlay')
     // передаем нод лист с дивами для эвента
     this.items = document.querySelectorAll(obj.items)
     // получаем доступ к дивам для отображения в них информации из выбранных карточек
-    this.title = document.querySelector(obj.title)
-    this.text = document.querySelector(obj.text)
-    // this.overlay.style.opacity = 1
-    // this.overlayOpacity = this.overlay.style.opacity
-    // console.log(this.overlayOpacity)
+    this.title = document.querySelector('.popup-overlay__title')
+    this.text = document.querySelector('.popup-overlay__text')
   }
+
+  // функция для добавления элемента в разметку
+  addElemFunc(classAddElem, elem){
+    document.querySelector(classAddElem).insertAdjacentHTML('beforeend', elem);
+  }
+
+  // функция для построения разметки по данным из объекта разметки
+  createElem(obj){
+    for(let prop of obj){
+    Object.keys(prop).map((value) => {
+      this.addElemFunc(value, prop[value])
+      })
+    }
+  }
+
 //TODO: найти способ передавать для эвента объект или массив методов, или "...f" для их вызова
   on(eventName, f){
     // вешаем эвент на дивы и отслеживаем нажатия, 
@@ -54,7 +77,7 @@ export default class Popup {
     // console.log([elem, f, t])
     // частота кадров при работе анимации
     let fps = f
-    //  время работы анимации
+    //  время работы анимации
     let time = t
     // скорость работы 1 кадра анимации
     let speed = 1000 / fps
