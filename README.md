@@ -18,6 +18,7 @@
 * [06_empty input highlighting](https://github.com/SetMiller/programming-practice/tree/master/Modules/06_empty%20input%20highlighting)
 * [07_jQClone](https://github.com/SetMiller/programming-practice/tree/master/Modules/07_jQClone)
 * [08_popup](https://github.com/SetMiller/programming-practice/tree/master/Modules/08_popup)
+* [09_popup module](https://github.com/SetMiller/programming-practice/tree/master/Modules/09_popup%20module)
 
 Отдельное спасибо:
 -
