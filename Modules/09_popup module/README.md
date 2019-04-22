@@ -3,7 +3,7 @@
 
 Цели и задачи:
 - 
-- Создание автономного модуля `popup`
+- Создание некоторого подобия автономного модуля `popup`
 - Для нового модуля передаем только `items` для которых он будет выполняться
 
 Интересные моменты:
@@ -13,10 +13,10 @@
   * Создаем массив разметки (***родительский элемент для вставки прописан заранее***)
     ```javascript
     const arrElemProp = [
-        {'.wrapper': '<div class="popup-overlay popup-sleep"></div>'},
+        {'.wrapper': '<div class="popup popup-overlay popup-sleep"></div>'},
           {'.popup-overlay': '<div class="popup-overlay__title"> title </div>'},
           {'.popup-overlay': '<div class="popup-overlay__text"> text </div>'},
-        {'.wrapper': '<div class="popup-underlay popup-sleep"></div>'},
+        {'.wrapper': '<div class="popup popup-underlay popup-sleep"></div>'},
       ]
     ```
   * Функция для добавления элементов в разметку
@@ -38,4 +38,4 @@
 
 Примечание:
 -
-- Посмотреть позже на предмет улучшения кода
+- Почистил код

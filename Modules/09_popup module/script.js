@@ -12,9 +12,9 @@ import Popup from './lib/Popup.js'
                           })
   // Добавляем функционал
     popup
-          .on('click', () => popup.open())
-          .toggler()  
-          .fadeClose(500, 60, callback)  
+          .open()  
+          .close(500, 60, callback)  
+          
     function callback(){
       console.log('it works')
       console.log(this)

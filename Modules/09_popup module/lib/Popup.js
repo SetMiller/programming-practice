@@ -3,23 +3,20 @@ export default class Popup {
     
     // объект добавляемой разметки
       const arrElemProp = [
-        {'.wrapper': '<div class="popup-overlay popup-sleep"></div>'},
+        {'.wrapper': '<div class="popup popup-overlay popup-sleep"></div>'},
           {'.popup-overlay': '<div class="popup-overlay__title"> title </div>'},
           {'.popup-overlay': '<div class="popup-overlay__text"> text </div>'},
-        {'.wrapper': '<div class="popup-underlay popup-sleep"></div>'},
+        {'.wrapper': '<div class="popup popup-underlay popup-sleep"></div>'},
       ]
 
     // построение разметки 🔥🔥🔥
-     this.createElem(arrElemProp)
+      this.createElem(arrElemProp)
 
-    // передаем 2 нод листа с дивами для попапа
-      this.overlay = document.querySelector('.popup-overlay')
-      this.underlay = document.querySelector('.popup-underlay')
-    // передаем нод лист с дивами для эвента
-      this.items = document.querySelectorAll(obj.items)
-    // получаем доступ к дивам для отображения в них информации из выбранных карточек
-      this.title = document.querySelector('.popup-overlay__title')
-      this.text = document.querySelector('.popup-overlay__text')
+    this.elements = document.querySelectorAll('.popup')
+    this.underlay = document.querySelector('.popup-underlay')
+    this.items = document.querySelectorAll(obj.items)
+    this.title = document.querySelector('.popup-overlay__title')
+    this.text = document.querySelector('.popup-overlay__text')
   }
 
   // функция для добавления элемента в разметку
@@ -36,38 +33,24 @@ export default class Popup {
     }
   }
 
-//TODO: найти способ передавать для эвента объект или массив методов, или "...f" для их вызова
-  on(eventName, f){
-    // вешаем эвент на дивы и отслеживаем нажатия, 
-    for(let item of this.items){
-      item.addEventListener(eventName, f)
-    }
-    return this
-  }
-
   open(){
-    // при нажатии на итем убираем скрывающий класс
-    this.overlay.classList.remove('popup-sleep')
-    this.underlay.classList.remove('popup-sleep')
-  }
-  // FIXME: 
-  // применить функцию к NodeList интересующих нас элементов
-  fadeClose(animationTimer = 500, fps = 60, callback){
-    const cbFunc = callback || function(){console.log('You fogot about callback function!!')}
-    this.underlay.addEventListener('click', () => {
-      // либо можно получить NodeList элементов и вызвать функцию в цикле
-      this.fade(this.overlay, fps, animationTimer, cbFunc)
-      this.fade(this.underlay, fps, animationTimer, cbFunc)
-    })
-    return this
-  }
-
-  toggler(){
-    // отслеживаем клик на кнопке и выводим ее информацию
     for(let item of this.items){
       item.onclick = () => {
         this.title.innerHTML = `Вы выбрали карточку № ${item.getAttribute('data-numb')}`
         this.text.innerHTML = `Цена по карточке ${item.getAttribute('data-price')} руб.`
+        for (let elem of this.elements) {
+          elem.classList.remove('popup-sleep') 
+        }
+      }
+    }
+    return this
+  }
+
+  close(animationTimer = 500, fps = 60, callback){
+    const callBackFunc = callback || function(){}
+    this.underlay.onclick = () => {
+      for (let elem of this.elements) {
+        this.fadeTechFunc(elem, fps, animationTimer, callBackFunc) 
       }
     }
     return this
@@ -75,20 +58,19 @@ export default class Popup {
 
   // f -> fps (частота, с которой будет выполняться анимация)
   // t -> time (время, которое будет выполняться анимация)
-  fade(elem, f, t, cbFunc){
-    // console.log([elem, f, t])
+  fadeTechFunc(elem, f, t, callback){
     // частота кадров при работе анимации
-    let fps = f
-    //  время работы анимации
-    let time = t
+    const fps = f
+    //  время работы анимации
+    const time = t
     // скорость работы 1 кадра анимации
-    let speed = 1000 / fps
+    const speed = 1000 / fps
     // общее количество кадров анимации
     let steps = time / speed
     // начальное значение opacity
     let op = 1
     // промежуточное значение opacity
-    let d0 = op / steps
+    const d0 = op / steps
     // функция таймер
     let timer = setInterval(function(){
         op -= d0
@@ -99,8 +81,8 @@ export default class Popup {
           clearInterval(timer)
           elem.classList.add('popup-sleep')
           elem.style.opacity = ''
-          // вызываем callback функцию в контексте элемента с которым работаем
-          cbFunc.call(elem)
+          // В некоторые моменты callback функция отрабатывает раньше сброса opacity строкой выше 🔥
+          callback.call(elem)
         }
       }
     , speed)
