@@ -14,7 +14,10 @@ import Popup from './lib/Popup.js'
     popup
           .on('click', () => popup.open())
           .toggler()  
-          .fadeClose(500, 60)  
-    
+          .fadeClose(500, 60, callback)  
+    function callback(){
+      console.log('it works')
+      console.log(this)
+    }
   },
 )

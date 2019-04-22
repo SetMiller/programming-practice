@@ -50,12 +50,14 @@ export default class Popup {
     this.overlay.classList.remove('popup-sleep')
     this.underlay.classList.remove('popup-sleep')
   }
-
-  fadeClose(animationTimer = 500, fps = 60){
+  // FIXME: 
+  // применить функцию к NodeList интересующих нас элементов
+  fadeClose(animationTimer = 500, fps = 60, callback){
+    const cbFunc = callback || function(){console.log('You fogot about callback function!!')}
     this.underlay.addEventListener('click', () => {
       // либо можно получить NodeList элементов и вызвать функцию в цикле
-      this.fade(this.overlay, fps, animationTimer)
-      this.fade(this.underlay, fps, animationTimer)
+      this.fade(this.overlay, fps, animationTimer, cbFunc)
+      this.fade(this.underlay, fps, animationTimer, cbFunc)
     })
     return this
   }
@@ -73,7 +75,7 @@ export default class Popup {
 
   // f -> fps (частота, с которой будет выполняться анимация)
   // t -> time (время, которое будет выполняться анимация)
-  fade(elem, f, t){
+  fade(elem, f, t, cbFunc){
     // console.log([elem, f, t])
     // частота кадров при работе анимации
     let fps = f
@@ -97,6 +99,8 @@ export default class Popup {
           clearInterval(timer)
           elem.classList.add('popup-sleep')
           elem.style.opacity = ''
+          // вызываем callback функцию в контексте элемента с которым работаем
+          cbFunc.call(elem)
         }
       }
     , speed)
