@@ -12,7 +12,9 @@
   ```javascript
   function jQ(selector){
     let elements
-    selector instanceof HTMLElement ? elements = [selector] : elements = document.querySelectorAll(selector)
+      selector instanceof HTMLElement ? 
+      elements = [selector] : 
+      elements = document.querySelectorAll(selector)
     return new jQClone(elements)
   }
   ```
