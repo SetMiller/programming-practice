@@ -19,6 +19,7 @@
 * [07_jQClone](https://github.com/SetMiller/programming-practice/tree/master/Modules/07_jQClone)
 * [08_popup](https://github.com/SetMiller/programming-practice/tree/master/Modules/08_popup)
 * [09_popup module](https://github.com/SetMiller/programming-practice/tree/master/Modules/09_popup%20module)
+* [10_jQClone_v0.2](https://github.com/SetMiller/programming-practice/tree/master/Modules/10_jQClone_v0.2)
 
 Отдельное спасибо:
 -
