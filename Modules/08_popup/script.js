@@ -6,20 +6,47 @@ import Popup from './lib/Popup.js'
   }
 }(
   function popupOn(){
+  // 1️⃣ Вариант с объектом в качестве параметров
     let popup = new Popup({
+                            overlay:    '.popup-overlay',
                             underlay:   '.popup-underlay',
-                            elements:   '.popup',
                             title:      '.popup-overlay__title',
                             text:       '.popup-overlay__text',
                             items:      '.items .items__item'
                           })
-    popup
-            .open()
-            .Close(1000, 100, callBackFunc)
+    // 1️⃣.1️⃣ 
+      // popup.on('click', wrapperFunc)
+      // function wrapperFunc(){
+      //   popup.open()
+      // }
+      // popup.on('click', popup.open)
 
-  // Callback функция для последующего получения доступа к элементам, с которыми уже отработали действие
-    function callBackFunc(){
-      console.log(this)
-    }
+    // 1️⃣.2️⃣  
+      popup
+            .on('click', () => popup.open())
+            .toggler()  
+            .close()  
+    
+  // 2️⃣ Вариант упрощенный, без создания классов
+    // const overlay = document.querySelector('.popup-overlay')
+    // const underlay = document.querySelector('.popup-underlay')
+    // const items = document.querySelectorAll('.items')
+    // for(let item of items){
+    //   item.addEventListener('click',delClass)
+    // }
+    
+    // underlay.addEventListener('click',addClass)
+
+    // function delClass() {
+    //   overlay.classList.remove('popup-sleep')
+    //   underlay.classList.remove('popup-sleep')
+    // }
+    
+    // function addClass(){
+    //   overlay.classList.add('popup-sleep')
+    //   underlay.classList.add('popup-sleep')
+    // }
+
+
   },
 )

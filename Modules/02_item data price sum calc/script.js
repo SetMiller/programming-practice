@@ -10,7 +10,7 @@
     const divPrice = document.querySelector('.value')
     // Для каждой карточки товара при клике вызываем функцию toggler()
     for (let itemElement of items){
-      itemElement.onclick = toggler
+      itemElement.onmousedown = toggler
     }
     // Для элемента добавляем класс и вызывает функцию суммирования
     function toggler(){

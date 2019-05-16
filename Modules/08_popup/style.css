@@ -30,7 +30,7 @@ html, body{
   box-sizing: border-box
 }
 
-.popup-overlay__title {
+.popup-overlay_title {
   background: #E6B89C;
   width: 100%;
   text-align: center;
@@ -38,8 +38,8 @@ html, body{
   flex-grow: 1;
 }
 
-.popup-overlay__text {
-  background: #9CAFB7;
+.popup-overlay_text {
+  background: #EAD2AC;
   flex-grow: 2;
   line-height: 200px;
 }
@@ -52,11 +52,11 @@ html, body{
   height: 100%;
   z-index: 200;
   background: #9CAFB7;
+  opacity: 0.7;
 }
 
 .popup-sleep {
-  display: none;
-  opacity: 0;
+  display: none
 }
 /* 
 .popup-active {
