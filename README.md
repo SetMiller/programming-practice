@@ -1,168 +1,28 @@
-# Webpack-Babel-Eslint-install
+# Практика
 
 Цели и задачи:
 -
-* Отработать процесс установки и настройки Webpack + Babel;
-* Настроить Eslint;
-* Зафиксировать ход выполнения всех этапов; 
+- Систематизировать знания на практических примерах
+- Подготовить небольшие модули для возможного дальнейшего использования
+- Освоить принципы работы jQuery
+- Понять принципы написания библиотек
 
-Процесс выполнения установки и настройки среды:
--  
 
-### Установка используемых модулей
+Перечень содержимого репозитория:
+-
+* [01_simple calc](https://github.com/SetMiller/some_small_modules/tree/master/Modules/01_simple%20calc)
+* [02_item data price sum calc](https://github.com/SetMiller/some_small_modules/tree/master/Modules/02_item%20data%20price%20sum%20calc)
+* [03_confirmLinks and imgBlock](https://github.com/SetMiller/some_small_modules/tree/master/Modules/03_confirmLinks%20and%20imgBlock)
+* [04_simpleSlider_v0.1](https://github.com/SetMiller/some_small_modules/tree/master/Modules/04_simpleSlider_v0.1)
+* [05_simpleSliders_v0.4](https://github.com/SetMiller/some_small_modules/tree/master/Modules/05_simpleSliders_v0.4)
+* [06_empty input highlighting](https://github.com/SetMiller/programming-practice/tree/master/Modules/06_empty%20input%20highlighting)
+* [07_jQClone](https://github.com/SetMiller/programming-practice/tree/master/Modules/07_jQClone)
+* [08_popup](https://github.com/SetMiller/programming-practice/tree/master/Modules/08_popup)
+* [09_popup module](https://github.com/SetMiller/programming-practice/tree/master/Modules/09_popup%20module)
+* [10_jQClone_v0.2](https://github.com/SetMiller/programming-practice/tree/master/Modules/10_jQClone_v0.2)
 
-- В терминале `VSCode` перемещаемся в директорию с проектом;
-- В терминале вводим команду:
-  * `npm init -y` 
-- После этого в нашей директории будет сформирован базовый `package.json`
-- Устанавливаем в директорию с будущим проектом следующие модули с флагом `-D`:
-   * `npm i webpack webpack-cli webpack-dev-server -D`
-- В корневой папке проекта создаем файла для на стройки `webpack` -> `webpack.config.js`
-- Создаем правило для игнорирования ненужных файлов и папок при загрузке проекта на `GitHub`
-   * `.gitignore` c указанием в нем папки `node-modules`
-- Устанавливаем `Babel`, выполнив следующую команду (проверить на актуальность можно [тут](https://www.npmjs.com/package/babel-loader))
-   * `npm install -D babel-loader @babel/core @babel/preset-env`
-- Устанавливаем расширение `Eslint` для `VSCode`;
-- Устанавливаем `Eslint`, выполнив следующую команду (проверить на актуальность можно [тут](https://www.npmjs.com/package/eslint))
-   * `npm install -D eslint`
-- Устанавливаем парсер для `Eslint`, исходники [тут](https://www.npmjs.com/package/babel-eslint)
-   * `npm install -D babel-eslint`
-- Устанавливаем полифилл `Babel-polyfill`, исходники [тут](https://www.npmjs.com/package/babel-polyfill)
-   * `npm i babel-polyfill`
+Отдельное спасибо:
+-
+[Дмитрию Лаврик](https://dmitrylavrik.ru/) за **неоценимый** вклад в процесс обучения!
 
-  
-### Настройка используемых модулей
 
-#### 1. Webpack
-
-- В корневой директории создаем папки для хранения исходных файлов и итогового;
-- В файле `webpack.config.js` выполняем базовую настройку:
-  * указываем папки с исходными файлами и папку куда будет собиратся проект:
-  * так как в `path` необходимо указать полный путь к папке, можно использовать модуль **`path`**
-   ```javascript
-   const path = requier('path')
-   let conf = {
-      entry: './es6/script.js',                          
-      output: {
-         path: path.resolve(__dirname, './js'),
-         filename: 'main.js',
-         publicPath: 'js/',
-   }
-   module.exports = conf
-   ```
-- В файле `package.json` прописываем команды для запуска `webpack`:
-   ```javascript
-   "scripts": {
-      "dev": "webpack-dev-server --mode development --open",
-      "build": "webpack --mode production"
-   },
-   ```
-- Для проверки что все правильно сделали, можно в терминале выполнить команду: 
-  * `npm run build` 
-  * В корневой директории будет создана указанная в `publicPath: 'js/'` папка, в которой будет создан итоговый `javascript` файл со сборкой
-- В файле `webpack.config.js` для `devServer` добавляем настройку вывода сообщений об ошибках поверх всех окон:
-   ```javascript
-   devServer: {
-      overlay: true
-   },
-   ```
-- Добавляем правило загрузки файлов в `webpack`, для чего будем использовать `babel-loader`. В кратце лоадер обрабатывает исходные файлы по каким-либо правилам, после чего формируется **файл сборки**:
-   ```javascript
-   module: {
-      rules: [
-         {
-            test: /\.js$/,
-            loader: 'babel-loader',
-         },
-      ]
-   }
-   ```
-
-#### 2. Babel (правила преобразования исходных файлов)
-
-Краткая справочная информация:
-- Ознакомиться с правилами преобразования можно [тут](https://babeljs.io/docs/en/plugins) на основании которых можно собирать свои *пресеты*;
-- Ознакомиться с готовыми пресетами можно [тут](https://babeljs.io/docs/en/presets);
-- Для установки базовых настроек будет использоваться [preset-env](https://babeljs.io/docs/en/babel-preset-env), для добавления отсутсвующих в нем правил необходимо подключить отдельные модули;
-
-Процесс настройки:
-- В корневой директории создаем файл `.babelrc`;
-- Указываем название пресета с набором базовых настроек обработки исходных файлов:
-   ```javascript
-   "presets": [
-      "@babel/preset-env"
-   ],
-   ```
-- Если допустим нам необходимо использовать стрелочные функции для использования в методах классов и это правило отсутствует в установленном выше пресете, то можно дополнитель установить плагин для обработки:
-   - для установки необходимо выполнить команду:
-      - npm i -D @babel/plugin-proposal-class-properties 
-   - далее в файл `.babelrc` добавляем правило работы с плагином:
-      ```javascript
-      "plugins": [
-         "@babel/plugin-proposal-class-properties"
-      ]
-      ```
-- для проверки что все правильно установлено и работает выполняем команду - `npm run build`;
-- для использования команды `npm run dev` в корневую папку необходимо добавить `index.html` с указанием в нем пути для открытия `main.js`, после чего можно выполнить команду.
-
-#### 3. Source maps 
-
-Краткая справочная информация:
-- Ознакомится c различиями между `source map` можно [тут](https://webpack.js.org/configuration/devtool/);
-- В нашем случае мы будем испольховать следующую карту - `cheap-module-eval-source-map`
-
-Процесс настройки:
-- Для настройки карты необходимо выполнить реализацию `module.exports` как функции, то есть преобразовать объект `conf` с учетом `options`:
-   ```javascript
-   module.exports = (env, options) => {
-      conf.devtool = options.mode === 'production'
-                        ? false
-                        : 'cheap-module-eval-source-map'
-      return conf
-   };
-   ```
-- При данных настройках карта будет подключаться только при работе в режиме `--mode development`
-
-#### 4. Eslint (автоматическое тестирование исходного кода)
-
-Краткая справочная информация:
-- Расширение используется в основном при командной разработке для выполнения анализа исходного кода и помощи в устранении ошибок в соответствии с установленными правилами.
-
-Процесс настройки:
-- В корневой директории создаем файл `.eslintrc`;
-- Устанавливаем рекомендуемые настройки по-умолчанию:
-   ```javascript
-   "extends": "eslint:recommended"
-   ```
-- После установки `babel-eslint`, устанавливаем парсер для анализа кода:
-   ```javascript
-   // Использовать можно либо кастомный парсер
-   "parser": "babel-eslint"
-
-   // либо предустановленный
-   "parserOptions": {
-      "ecmaVersion": 2018
-   }
-   ```
-- Далее остается только настроить правила для глобальных переменных:
-   ```javascript
-   "globals": {
-      "window": true,
-      "console": true,
-      "document": true
-   },
-   "rules": {
-      "no-console": "off"
-   }
-   ```
-  
-#### 5. Babel-polyfill
-
-Краткая справочная информация:
-- Расширение используется при необходимости использования классов? ht лизация которых отсутствует в старых браузерах. Например использование `Symbol` или `Generators` в `Internet Explorer 11`
-
-Процесс настройки:
-- Для возможности использования `генераторов` или `Symbol` в файл в который импортируется генератор необходимо добавить:
-   ```javascript
-   import 'babel-polyfill'
-   ```
