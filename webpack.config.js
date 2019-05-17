@@ -3,7 +3,7 @@
 const path = require('path')                         
 
 let conf = {
-   entry: './Modules/12_generator/es6/script.js',                          
+   entry: './Modules/15_proxy/es6/script.js',                          
    output: {
       path: path.resolve(__dirname, './js'),
       filename: 'main.js',
