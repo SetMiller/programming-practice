@@ -3,7 +3,7 @@
 const path = require('path')                         
 
 let conf = {
-   entry: './Modules/15_proxy/es6/script.js',                          
+   entry: './Modules/17_emailParser/es6/script.js',                          
    output: {
       path: path.resolve(__dirname, './js'),
       filename: 'main.js',
