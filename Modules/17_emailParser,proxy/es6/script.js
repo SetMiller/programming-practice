@@ -4,7 +4,7 @@ import 'babel-polyfill'
 // Если экспорт без default, то название нужно писать в фигурных скобках 
 // import {VueGetters} from './vue-getters'
 
-import {emailParser, watchObj} from './emailParser&proxy'
+import {emailParser, watchObj} from './emailParser&proxy.my'
 
 // Объект должен найти элемент, взять данные и подставить в маску
 
@@ -43,7 +43,7 @@ console.log(parser.isCorrect);
 
 let div = document.createElement('div');
 document.body.appendChild(div);
-console.log([div])
+// console.log([div])
 
 let cleverDiv = watchObj(div, function(prop, val){
    console.log(prop, val);
@@ -52,7 +52,7 @@ cleverDiv.innerHTML = '<strong>HTML</strong><em>Changed</em>';
 cleverDiv.style.color = 'red';
 // чтобы можно было обратиться к элементу, добавляем проверку на объект или нет
 // если объект, обрабатываем рекурсивно
-console.log(cleverDiv.innerHTML)
+// console.log(cleverDiv.innerHTML)
 // чтобы можно было вызвать функцию получения элемента, нужно привязать контекст к элементу
 cleverDiv.querySelector('em').style.color = 'green';
 
