@@ -4,7 +4,7 @@ import * as articleModel from './article'
 
 articleModel.all()
    .then((allRes) => {
-      console.log(allRes)
+      console.log(allRes.data.length)
       const index = Math.floor(Math.random() * allRes.data.length);
       console.log('select index ' + index + ', id = ' + allRes.data[index].id)
 
@@ -25,7 +25,17 @@ articleModel.all()
       console.log('articles count = ' + allRes.data.length);
    })
    .catch((e) => {
-      console.log(e)
+      if (typeof(e) === 'string') {
+         try{
+            const error = JSON.parse(e)
+            console.log(error.status)
+         }
+         catch {
+            console.log(e)
+         }
+      } else {
+        console.log(e) 
+      }
    })
 
 

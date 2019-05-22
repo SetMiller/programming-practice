@@ -3,7 +3,7 @@
 /**
  * Глобальная вероятность успеха для удобства тестирования
  */
-const GLOBAL_PROPABILITY = 0.9;
+const GLOBAL_PROPABILITY = .9;
 const BAD_JSON_PROPABILITY = 0.1;
 
 /**
@@ -23,7 +23,7 @@ export const all = () => {
                     })
             })
             .catch(() => {
-                serverAnswer('', 100500, "All Error")
+                serverAnswer('', 100500, "All db Error")
                     .then((sAnswer) => {
                         reject(sAnswer)
                     })
@@ -52,7 +52,7 @@ export const get = (id) => {
                     })
             })
             .catch(() => {
-                serverAnswer('', 100500, "Get Error")
+                serverAnswer('', 100500, "Get db Error")
                     .then((sAnswer) => {
                         reject(sAnswer)
                     })
@@ -89,7 +89,7 @@ export const remove = (id) => {
                 }
             })
             .catch(() => {
-                serverAnswer('', 100500, "Remove Error")
+                serverAnswer('', 100500, "Remove db Error")
                     .then((sAnswer) => {
                         reject(sAnswer)
                     })
@@ -113,7 +113,7 @@ export function TimeoutPropabiliry(time, probability){
 function serverAnswer(data, code = 200, status = "OK"){
     return new Promise((resolve,reject) => {
        if(Math.random() < BAD_JSON_PROPABILITY){
-        reject('incoorect json');
+        reject('incorrect json');
         }
 
         resolve(JSON.stringify({
