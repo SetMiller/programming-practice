@@ -43,7 +43,7 @@ timer.start()
    console.log(another2(2, 3))
 
 
-// карринг -> привязка констунтных значений для вызова функции
+// карринг -> привязка константных значений для вызова функции
    const doubleBindCarring = double.bind(some, 3, 2)
    const doubleBindCarring2 = double.bind(some, 3)
    // больше нет необходимости передавать дополнительные аргументы, все жестко привязано

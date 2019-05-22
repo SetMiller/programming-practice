@@ -1,6 +1,7 @@
 import 'babel-polyfill'
 
 import * as asyncApi from './api-asyncFunc'
+import {addNote} from './notes'
 
 const userProccess = async() => {
    const regRes = await asyncApi.userReg()
