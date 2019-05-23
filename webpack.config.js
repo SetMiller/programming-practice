@@ -2,8 +2,8 @@
 
 const path = require('path')                         
 
-let conf = {
-   entry: './Modules/18_callback,promise,async,await/hw/promise/script.js',                          
+let conf = { 
+   entry: './Modules/18_callback,promise,async,await/hw/async/script.js',                          
    output: {
       path: path.resolve(__dirname, './js'),
       filename: 'main.js',

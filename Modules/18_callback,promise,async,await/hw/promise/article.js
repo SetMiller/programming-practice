@@ -5,48 +5,37 @@ import 'babel-polyfill'
 import * as serverApi from './db'
 
 const all = () => {
-   return new Promise((resolve, reject) => {
-      serverApi.all()
-         .then((allResponse) => {
-            const info = JSON.parse(allResponse)
-            if (info.code == 200) {
-               resolve(info)
-            }
-         })
-         .catch((e) => {
-            reject(e)
-         })
-   })
+   return serverApi.all()
+            .then((allResponse) => {
+               return serverResponse(allResponse)
+            })
 }
 
 const one = (id) => {
-   return new Promise((resolve, reject) => {
-      serverApi.get(id)
-         .then((getResponse) => {
-            const info = JSON.parse(getResponse)
-            if (info.code == 200) {
-               resolve(info)
-            }
-         })
-         .catch((e) => {
-            reject(e)
-         })
-   })
+   return serverApi.get(id)
+            .then((getResponse) => {
+               return serverResponse(getResponse)
+            })
 }
 
 const remove = (id) => {
-   return new Promise((resolve, reject) => {
-      serverApi.remove(id)
+   return serverApi.remove(id)
          .then((removeResponse) => {
-            const info = JSON.parse(removeResponse)
-            resolve(info)
+            return serverResponse(removeResponse)
          })
-         .catch((e) => {
-            reject(e)
-         })
-   })
 }
 
+const serverResponse = (response) => {
+   try {
+      const info = JSON.parse(response)
+      if (info.code == 200) {
+         return info
+      }
+   } catch (error) {
+      throw new Error('bad JSON ERROR')
+   }
+   throw new Error('bad data #100500')
+}
 
 export {
    all,

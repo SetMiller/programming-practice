@@ -25,17 +25,7 @@ articleModel.all()
       console.log('articles count = ' + allRes.data.length);
    })
    .catch((e) => {
-      if (typeof(e) === 'string') {
-         try{
-            const error = JSON.parse(e)
-            console.log(error.status)
-         }
-         catch {
-            console.log(e)
-         }
-      } else {
-        console.log(e) 
-      }
+      console.log(e) 
    })
 
 

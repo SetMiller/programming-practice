@@ -11,27 +11,13 @@ const BAD_JSON_PROPABILITY = 0.1;
  * @param {callable} onAnswer Функция, обрабатывающая ответ от сервера в формате JSON 
  */
 export const all = () => {
-    return new Promise((resolve, reject) => {
-         TimeoutPropabiliry(300, GLOBAL_PROPABILITY)
+    return TimeoutPropabiliry(300, GLOBAL_PROPABILITY)
             .then(() => {
-                serverAnswer(articlesStorage)
-                    .then((sAnswer) => {
-                        resolve(sAnswer)
-                    })
-                    .catch((e) => {
-                        reject(e)
-                    })
+                return serverAnswer(articlesStorage)
             })
             .catch(() => {
-                serverAnswer('', 100500, "All Error")
-                    .then((sAnswer) => {
-                        reject(sAnswer)
-                    })
-                    .catch((e) => {
-                        reject(e)
-                    })
+                return serverAnswer('', 100500, "All Error")
             })
-    })
 }
 
 /**
@@ -40,28 +26,13 @@ export const all = () => {
  * @param {callable} onAnswer Функция, обрабатывающая ответ от сервера в формате JSON 
  */
 export const get = (id) => {
-    return new Promise((resolve, reject) => {
-        TimeoutPropabiliry(300, GLOBAL_PROPABILITY)
+    return TimeoutPropabiliry(300, GLOBAL_PROPABILITY)
             .then(() => {
-                serverAnswer(articlesStorage[mapArticles[id]])
-                    .then((sAnswer) => {
-                        resolve(sAnswer)
-                    })
-                    .catch((e) => {
-                        reject(e)
-                    })
+                return serverAnswer(articlesStorage[mapArticles[id]])
             })
             .catch(() => {
-                serverAnswer('', 100500, "Get Error")
-                    .then((sAnswer) => {
-                        reject(sAnswer)
-                    })
-                    .catch((e) => {
-                        reject(e)
-                    })
+                return serverAnswer('', 100500, "Get Error")
             })
-    })
-   
 }
 
 /**
@@ -70,35 +41,20 @@ export const get = (id) => {
  * @param {callable} onAnswer Функция, обрабатывающая ответ от сервера в формате JSON  
  */
 export const remove = (id) => {
-    return new Promise((resolve, reject) => {
-        TimeoutPropabiliry(300, GLOBAL_PROPABILITY)
+    return TimeoutPropabiliry(300, GLOBAL_PROPABILITY)
             .then(() => {
                 if (id in mapArticles){
                     let num = mapArticles[id];
                     delete mapArticles[id];
                     articlesStorage.splice(num, 1);
-                    serverAnswer(true)
-                        .then((sAnswer) => {
-                            resolve(sAnswer)
-                        })
-                        .catch((e) => {
-                            reject(e)
-                        })
+                    return serverAnswer(true)
                 } else {
-                    resolve(false)
+                    return false
                 }
             })
             .catch(() => {
-                serverAnswer('', 100500, "Remove Error")
-                    .then((sAnswer) => {
-                        reject(sAnswer)
-                    })
-                    .catch((e) => {
-                        reject(e)
-                    })
+                return serverAnswer('', 100500, "Remove Error")
             })
-    })
-    
 }
 
 /* полуприватная часть, вдруг захотите сделать промис :) */
@@ -111,16 +67,14 @@ export function TimeoutPropabiliry(time, probability){
 }
 
 function serverAnswer(data, code = 200, status = "OK"){
-    return new Promise((resolve,reject) => {
-       if(Math.random() < BAD_JSON_PROPABILITY){
-        reject('incoorect json');
-        }
+    if  (Math.random() < BAD_JSON_PROPABILITY){
+        return('incoorect json');
+    }
 
-        resolve(JSON.stringify({
-            code, 
-            status,
-            data
-        })) 
+    return JSON.stringify({
+        code, 
+        status,
+        data
     })
 }
 

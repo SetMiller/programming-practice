@@ -26,3 +26,13 @@
 [Дмитрию Лаврик](https://dmitrylavrik.ru/) за **неоценимый** вклад в процесс обучения!
 
 
+19_components:
+-
+1. скачать [плагин](@babel/plugin-transform-react-jsx) 
+2. выполнить установку `npm i -D @babel/plugin-transform-react-jsx`
+3. в настройках `.babelrc` прописать настроки:
+   ```javascript
+      "plugins": [
+         ["@babel/plugin-transform-react-jsx", {"pragma" : "Parody.dom"}]
+      ]
+   ```

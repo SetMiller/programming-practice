@@ -3,7 +3,7 @@
 /**
  * Глобальная вероятность успеха для удобства тестирования
  */
-const GLOBAL_PROPABILITY = .9;
+const GLOBAL_PROPABILITY = 0.9;
 const BAD_JSON_PROPABILITY = 0.1;
 
 /**
@@ -11,27 +11,13 @@ const BAD_JSON_PROPABILITY = 0.1;
  * @param {callable} onAnswer Функция, обрабатывающая ответ от сервера в формате JSON 
  */
 export const all = () => {
-    return new Promise((resolve, reject) => {
-         TimeoutPropabiliry(300, GLOBAL_PROPABILITY)
+    return TimeoutPropabiliry(300, GLOBAL_PROPABILITY)
             .then(() => {
-                serverAnswer(articlesStorage)
-                    .then((sAnswer) => {
-                        resolve(sAnswer)
-                    })
-                    .catch((e) => {
-                        reject(e)
-                    })
+                return serverAnswer(articlesStorage)
             })
             .catch(() => {
-                serverAnswer('', 100500, "All db Error")
-                    .then((sAnswer) => {
-                        reject(sAnswer)
-                    })
-                    .catch((e) => {
-                        reject(e)
-                    })
+                return serverAnswer('', 100500, "All db Error")
             })
-    })
 }
 
 /**
@@ -40,28 +26,13 @@ export const all = () => {
  * @param {callable} onAnswer Функция, обрабатывающая ответ от сервера в формате JSON 
  */
 export const get = (id) => {
-    return new Promise((resolve, reject) => {
-        TimeoutPropabiliry(300, GLOBAL_PROPABILITY)
+    return TimeoutPropabiliry(300, GLOBAL_PROPABILITY)
             .then(() => {
-                serverAnswer(articlesStorage[mapArticles[id]])
-                    .then((sAnswer) => {
-                        resolve(sAnswer)
-                    })
-                    .catch((e) => {
-                        reject(e)
-                    })
+                return serverAnswer(articlesStorage[mapArticles[id]])
             })
             .catch(() => {
-                serverAnswer('', 100500, "Get db Error")
-                    .then((sAnswer) => {
-                        reject(sAnswer)
-                    })
-                    .catch((e) => {
-                        reject(e)
-                    })
+                return serverAnswer('', 100500, "Get db Error")
             })
-    })
-   
 }
 
 /**
@@ -70,35 +41,20 @@ export const get = (id) => {
  * @param {callable} onAnswer Функция, обрабатывающая ответ от сервера в формате JSON  
  */
 export const remove = (id) => {
-    return new Promise((resolve, reject) => {
-        TimeoutPropabiliry(300, GLOBAL_PROPABILITY)
+    return TimeoutPropabiliry(300, GLOBAL_PROPABILITY)
             .then(() => {
                 if (id in mapArticles){
                     let num = mapArticles[id];
                     delete mapArticles[id];
                     articlesStorage.splice(num, 1);
-                    serverAnswer(true)
-                        .then((sAnswer) => {
-                            resolve(sAnswer)
-                        })
-                        .catch((e) => {
-                            reject(e)
-                        })
+                    return serverAnswer(true)
                 } else {
-                    resolve(false)
+                    return false
                 }
             })
             .catch(() => {
-                serverAnswer('', 100500, "Remove db Error")
-                    .then((sAnswer) => {
-                        reject(sAnswer)
-                    })
-                    .catch((e) => {
-                        reject(e)
-                    })
+                return serverAnswer('', 100500, "Remove db Error")
             })
-    })
-    
 }
 
 /* полуприватная часть, вдруг захотите сделать промис :) */
