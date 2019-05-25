@@ -3,14 +3,21 @@
 const path = require('path')                         
 
 let conf = {  
-   entry: './Modules/19_components/practice code/script.js',                          
+   entry: './Modules/20_ajax/script.js',                          
    output: {
       path: path.resolve(__dirname, './js'),
       filename: 'main.js',
       publicPath: 'js/',
    },
    devServer: {
-      overlay: true
+      overlay: true,
+      // proxy: {
+      //    '**': {
+      //        target: 'http://localhost:3000/',
+      //        secure: false,
+      //       //  changeOrigin: true
+      //    }
+   //   }
    },
    module: {
       rules: [

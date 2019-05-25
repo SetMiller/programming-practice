@@ -1,4 +1,4 @@
-import { MainComponent } from "./main";
+import { MainComponent, MainComponentDom } from "./main";
 
 export default class ElementComponents extends MainComponent {
    constructor(property){
@@ -21,34 +21,12 @@ export default class ElementComponents extends MainComponent {
    }
    // переопределяем рендер функцию!!!
    render(){
-      const input = document.createElement('input')
-      input.className = 'inputNumber__value'
-      input.setAttribute = ('type', 'text')
-     
-      input.value = this.main_property.value
-      input.onchange = (e) => {
-         this._normalizeValue(e.target.value)
-      }
-
-      const buttonP = document.createElement('input')
-      const buttonM = document.createElement('input')
-      buttonP.value = '+'
-      buttonM.value = '-'
-      buttonP.setAttribute('type', 'button')
-      buttonM.setAttribute('type', 'button')
-      buttonP.onclick = () => {
-         this._normalizeValue(this.main_property.value + 1)
-      }
-      buttonM.onclick = () => {
-         this._normalizeValue(this.main_property.value - 1)
-      }
-
-      const wrapper = document.createElement('div')
-      wrapper.className = 'element-wrapper'
-      wrapper.appendChild(buttonM)
-      wrapper.appendChild(input)
-      wrapper.appendChild(buttonP)
-
-      return super.render(wrapper)
+      return super.render(
+         <div className="wrapper-element">
+            <input type="button" value="-" className="inputNumber__min" onclick={() => {this._normalizeValue(this.main_property.value - 1)}}/>
+            <input type="text" onchange={(e) => {this._normalizeValue(e.target.value)}} value={this.main_property.value}/>
+            <input type="button" value="+" className="inputNumber__max" onclick={() => {this._normalizeValue(this.main_property.value + 1)}}/>
+         </div>
+      )
    }
 }
