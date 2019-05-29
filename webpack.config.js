@@ -2,7 +2,7 @@
 
 const path = require('path')                         
 
-let conf = {  
+let conf = { 
    entry: './Modules/20_ajax/script.js',                          
    output: {
       path: path.resolve(__dirname, './js'),

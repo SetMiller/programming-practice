@@ -21,14 +21,11 @@
 * [09_popup module](https://github.com/SetMiller/programming-practice/tree/master/Modules/09_popup%20module)
 * [10_jQClone_v0.2](https://github.com/SetMiller/programming-practice/tree/master/Modules/10_jQClone_v0.2)
 
-Отдельное спасибо:
--
-[Дмитрию Лаврик](https://dmitrylavrik.ru/) за **неоценимый** вклад в процесс обучения!
 
 
 19_components:
 -
-1. скачать [плагин](@babel/plugin-transform-react-jsx) 
+1. скачать [плагин](https://www.npmjs.com/package/@babel/plugin-transform-react-jsx)
 2. выполнить установку `npm i -D @babel/plugin-transform-react-jsx`
 3. в настройках `.babelrc` прописать настроки:
    ```javascript
@@ -36,3 +33,9 @@
          ["@babel/plugin-transform-react-jsx", {"pragma" : "Parody.dom"}]
       ]
    ```
+
+
+21_axios:
+_
+1. установить [`axios`](https://www.npmjs.com/package/axios)
+2. `npm install axios`
