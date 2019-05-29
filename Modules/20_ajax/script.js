@@ -4,31 +4,30 @@ import * as asyncArticleModel from './article'
 
 
 const articleModel = async () => {
-   // const reqObj = {
-   //    title: 'Set',
-   // }
-   // let allRes = await asyncArticleModel.get(reqObj)
-   // console.log(allRes)
+   
+   // Чтение списка или отдельной записи
+      const reqObj = {
+         list: true,
+         // title: 'Set',
+      }
+      let allRes = await asyncArticleModel.get(reqObj)
+      console.log(allRes)
 
-   const reqListObj = {
-      list: '',
-   }
-   let listRes = await asyncArticleModel.getList(reqListObj)
-   console.log(listRes)
+   // Добавление записи
+      // const addObj = {
+      //    title: 'Set',
+      //    author: 'Miller'
+      // }
+      // const addRes = await asyncArticleModel.add(addObj)
+      // console.log(addRes)
 
-   // const addObj = {
-   //    title: 'Set3',
-   //    author: 'Miller3'
-   // }
-   // const addRes = await asyncArticleModel.add(addObj)
-   // console.log(addRes)
-
-   const titleToDelete = listRes[Math.floor(Math.random() * listRes.length)]
-   const delObj = {
-      title: `${titleToDelete}`,
-   }
-   const removeRes = await asyncArticleModel.remove(delObj)
-   console.log(removeRes)
+   // Удаление записи
+      // const titleToDelete = allRes[Math.floor(Math.random() * allRes.length)]
+      // const delObj = {
+      //    title: `${titleToDelete}`,
+      // }
+      // const removeRes = await asyncArticleModel.remove(delObj)
+      // console.log(removeRes)
 
 }
 

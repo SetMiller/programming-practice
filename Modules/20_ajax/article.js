@@ -1,16 +1,9 @@
-/* global fetch*/
+/* global fetch FormData*/
 
 import 'babel-polyfill'
 
 // Чтение постов
 export const get = async(prop) => {
-   const method = 'GET'
-   const resp = await fetchRequest(method, prop)
-   return resp
-}
-
-// Получение списка титулов
-export const getList = async(prop) => {
    const method = 'GET'
    const resp = await fetchRequest(method, prop)
    return resp
@@ -32,20 +25,44 @@ export const remove = async(prop) => {
 
 function parseResponse(data){
    if (data.code == 100500) {
-      throw new Error('Error #100500')
+      throw new Error('Property is empty')
    }
    return data
 }
 
+function urlForFetch(url, obj){
+   let urlForFetch = url
+   urlForFetch += '?'
+   for (let prop in obj) {
+      urlForFetch += `${prop}=${obj[prop]}&`
+   }
+   return urlForFetch
+}
+
 const fetchRequest = (method, obj) => {
    let url = 'http://localhost:3000/'
-   if (obj) {
-      url += '?'
-      for (let prop in obj) {
-         url += `${prop}=${obj[prop]}&`
-      }
+   let urlResp = urlForFetch(url, obj)
+   let response
+   switch (method) {
+      case 'GET':
+         response = fetch(urlResp,{method})      
+         break;
+      case 'POST':
+         response = fetch(url,{method, 
+            headers:{
+               'Content-Type': 'application/json'
+            }, 
+            body:JSON.stringify(obj)
+         })
+         break;
+      case 'DELETE':
+         response = fetch(urlResp,{method}) 
+         break;
+      default:
+         break;
    }
-   return fetch(`${url}`,{method: `${method}`})
-                     .then(response => response.json())
-                     .then(data => parseResponse(data))
+   
+   return response
+            .then(response => response.json())
+            .then(data => parseResponse(data))
 }
