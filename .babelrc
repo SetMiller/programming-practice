@@ -4,6 +4,8 @@
    ],
    "plugins": [
       "@babel/plugin-proposal-class-properties",
-      ["@babel/plugin-transform-react-jsx", {"pragma" : "MainComponentDom"}]
+      // для использования с react-jsx
+      // ["@babel/plugin-transform-react-jsx", {"pragma" : "MainComponentDom"}]
+      ["@babel/plugin-transform-react-jsx"]
    ]
 }
