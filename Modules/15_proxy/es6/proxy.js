@@ -5,8 +5,6 @@ let data = {
 }
 
 export default new Proxy(data, {
-   // отличается от геттера и сеттера обычных, тем что работают с каждым полем объекта
-   // принимает 2 параметра, сам объект и имя его свойства
    get(target, name){
       console.log(target)
       console.log(name)

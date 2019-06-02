@@ -1,5 +1,3 @@
-import { get } from "http";
-
 /* global Proxy*/
 
 class emailParser {
