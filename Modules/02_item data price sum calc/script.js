@@ -16,12 +16,14 @@
     function toggler(){
       this.classList.toggle('item-active')
       // передаем контекст карточки для функции, чтобы повторно не перебирать цикл
-      calcPrice(this)
+      calcPrice()
     }
     // Проверяем наличие класса item-active у элементов и суммируем значение из атрибута data-price
-    function calcPrice(item) {
+    function calcPrice() {
       let sum = 0
-      item.classList.contains('item-active') ? sum += parseInt(item.getAttribute('data-price')) : ''
+      for (let item of items) {
+        item.classList.contains('item-active') ? sum += parseInt(item.getAttribute('data-price')) : ''
+      }
       // Результат выводим на экран
       divPrice.innerHTML = sum
     }
